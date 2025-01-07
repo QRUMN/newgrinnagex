@@ -11,8 +11,12 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
+    "@twilio/voice-sdk": "^2.12.3",
     "axios": "^1.6.7",
+    "body-parser": "^1.20.3",
     "clsx": "^2.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
     "jotai": "^2.6.5",
     "lucide-react": "^0.344.0",
     "openai": "^4.77.3",
@@ -21,6 +25,7 @@
     "react-hook-form": "^7.50.1",
     "react-router-dom": "^6.22.2",
     "tailwind-merge": "^2.2.1",
+    "twilio": "^5.4.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
