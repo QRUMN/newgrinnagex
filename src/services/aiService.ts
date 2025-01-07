@@ -7,7 +7,7 @@ interface AIResponse {
 
 export class AIService {
   private static openai = new OpenAI({
-    apiKey: process.env.VITE_OPENAI_API_KEY,
+    apiKey: import.meta.env.VITE_OPENAI_API_KEY || '',
     dangerouslyAllowBrowser: true // Note: In production, you should proxy through your backend
   });
 
@@ -17,6 +17,10 @@ Always be professional, courteous, and concise. If you're unsure about specific 
 Never make up information about pricing or availability - instead, direct customers to schedule a consultation.`;
 
   static async sendMessage(message: string, context?: any): Promise<AIResponse> {
+    if (!this.openai.apiKey) {
+      throw new Error('OpenAI API key is not configured');
+    }
+
     try {
       const completion = await this.openai.chat.completions.create({
         messages: [

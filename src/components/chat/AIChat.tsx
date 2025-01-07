@@ -77,7 +77,9 @@ export const AIChat: React.FC = () => {
       
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: 'I apologize, but I encountered an error. Please try again later.',
+        content: error instanceof Error && error.message === 'OpenAI API key is not configured' 
+          ? 'The AI service is currently unavailable. Please try again later or contact support.'
+          : 'I apologize, but I encountered an error. Please try again later.',
         sender: 'ai',
         timestamp: new Date(),
       };
