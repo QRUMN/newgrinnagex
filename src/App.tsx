@@ -9,6 +9,7 @@ import { ServicesPage } from './pages/ServicesPage';
 import { ContactPage } from './pages/ContactPage';
 import { DashboardRoutes } from './routes/DashboardRoutes';
 import { PrivateRoute } from './routes/PrivateRoute';
+import { AIChat } from './components/chat/AIChat';
 
 export const App = () => {
   return (
@@ -29,6 +30,7 @@ export const App = () => {
         
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <AIChat />
     </BrowserRouter>
   );
 };
