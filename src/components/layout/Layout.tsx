@@ -9,10 +9,14 @@ interface LayoutProps {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="min-h-screen flex flex-col bg-light-100 dark:bg-dark-900">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-dark-900">
       <EmergencyCallout />
       <Header />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 w-full">
+        <div className="mx-auto">
+          {children}
+        </div>
+      </main>
       <Footer />
     </div>
   );
