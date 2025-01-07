@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { AIService } from '../../services/aiService';
+import { Phone, AlertCircle } from 'lucide-react';
 
 interface Message {
   id: string;
   content: string;
   sender: 'user' | 'ai';
   timestamp: Date;
+  isEmergency?: boolean;
 }
 
 export const AIChat: React.FC = () => {
@@ -41,6 +43,10 @@ export const AIChat: React.FC = () => {
     scrollToBottom();
   }, [messages]);
 
+  const handleEmergencyCall = () => {
+    window.location.href = 'tel:5551234567';
+  };
+
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputMessage.trim()) return;
@@ -64,6 +70,7 @@ export const AIChat: React.FC = () => {
         content: response.message,
         sender: 'ai',
         timestamp: new Date(),
+        isEmergency: response.isEmergency
       };
 
       setMessages(prev => [...prev, aiMessage]);
@@ -132,10 +139,27 @@ export const AIChat: React.FC = () => {
               className={`max-w-[80%] p-3 rounded-lg ${
                 message.sender === 'user'
                   ? 'bg-blue-600 text-white'
+                  : message.isEmergency
+                  ? 'bg-red-50 text-gray-800 border-2 border-red-200'
                   : 'bg-gray-100 text-gray-800'
               }`}
             >
+              {message.isEmergency && (
+                <div className="flex items-center mb-2 text-red-600">
+                  <AlertCircle className="w-5 h-5 mr-1" />
+                  <span className="font-semibold">Emergency Support</span>
+                </div>
+              )}
               {message.content}
+              {message.isEmergency && (
+                <button
+                  onClick={handleEmergencyCall}
+                  className="mt-2 w-full flex items-center justify-center bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors"
+                >
+                  <Phone className="w-4 h-4 mr-2" />
+                  <span>Call Emergency Line</span>
+                </button>
+              )}
             </div>
           </div>
         ))}
