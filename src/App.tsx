@@ -15,19 +15,20 @@ export const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout><HomePage /></Layout>} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/onboarding" element={<OnboardingPage />} />
         <Route path="/about" element={<Layout><AboutPage /></Layout>} />
         <Route path="/services" element={<Layout><ServicesPage /></Layout>} />
         <Route path="/contact" element={<Layout><ContactPage /></Layout>} />
-        
-        <Route path="/dashboard/*" element={
-          <PrivateRoute allowedRoles={['residential']}>
-            <DashboardRoutes />
-          </PrivateRoute>
-        } />
-        
+        <Route
+          path="/dashboard/*"
+          element={
+            <PrivateRoute allowedRoles={['residential']}>
+              <DashboardRoutes />
+            </PrivateRoute>
+          }
+        />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <AIChat />

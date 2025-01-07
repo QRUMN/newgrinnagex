@@ -13,7 +13,7 @@ export const Layout = ({ children }: LayoutProps) => {
       <EmergencyCallout />
       <Header />
       <main className="flex-1 w-full">
-        <div className="mx-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {children}
         </div>
       </main>
